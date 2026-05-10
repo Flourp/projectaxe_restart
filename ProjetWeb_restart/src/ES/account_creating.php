@@ -11,37 +11,35 @@ try {
 
 } catch (PDOException $e) {
 
-    exit('Error de conexión : ' . $e->getMessage());
+    exit('Erreur de connexion : ' . $e->getMessage());
 }
 
 
-/* Cuando se envía el formulario */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    /* Recuperación de datos */
+    /* Récupération des données */
     $pseudo = trim($_POST['pseudo']);
     $email = trim($_POST['email']);
     $mdp = trim($_POST['mdp']);
     $mdp2 = trim($_POST['mdp2']);
 
-    /* Verifica los campos */
     if (
         empty($pseudo) || empty($email) || empty($mdp) || empty($mdp2)
     ) {
 
-        echo "Por favor, completa todos los campos.";
+        echo "Veuillez remplir tous les champs.";
 
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
-        echo "Correo electrónico inválido.";
+        echo "Email invalide.";
 
     } elseif ($mdp !== $mdp2) {
 
-        echo "Las contraseñas son diferentes.";
+        echo "Les mots de passe sont différents.";
 
     } else {
 
-        /* Verifica si el correo ya está utilizado */
+        /* Vérifie si email est déjà utilisé */
         $check = $pdo->prepare(
             "SELECT * FROM utilisateurs WHERE email = :email"
         );
@@ -54,17 +52,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($user) {
 
-            echo "Este correo electrónico ya existe.";
+            echo "Cet email existe déjà.";
 
         } else {
 
-            /* Hash de la contraseña */
+            /* Hash du mot de passe */
             $passwordHash = password_hash(
                 $mdp,
                 PASSWORD_DEFAULT
             );
 
-            /* Inserción */
+            /* Insertion */
             $sql = $pdo->prepare(
                 "INSERT INTO utilisateurs
                 (pseudo, email, password)
@@ -79,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'password' => $passwordHash
             ]);
 
-            echo "¡Cuenta creada con éxito!";
+            echo "Compte créé avec succès !";
 
             header("Location: login.php");
             exit;
@@ -167,69 +165,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </section>
     </header>
 <div class="login_menu">
-
     <form method="POST">
-
-        <h2 class="titre_connexion">
-            Crea una cuenta
-        </h2>
-
-        <label for="pseudo">
-            Pseudo
-        </label>
-
-        <input
-            type="text"
-            id="pseudo"
-            name="pseudo"
-            placeholder="ex : Romain"
-            required
-            autocomplete="username"
-        >
-
-        <label for="email">
-            Email
-        </label>
-
-        <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="ex : romain@example.com"
-            required
-            autocomplete="email"
-        >
-
-        <label for="mdp">
-            Contraseña
-        </label>
-
-        <input
-            type="password"
-            id="mdp"
-            name="mdp"
-            placeholder="8 caracteres mínimo"
-            required
-            autocomplete="new-password"
-        >
-
-        <label for="mdp2">
-            Confirmar Contraseña
-        </label>
-
-        <input
-            type="password"
-            id="mdp2"
-            name="mdp2"
-            placeholder="Repetir la contraseña"
-            required
-            autocomplete="new-password"
-        >
-
-        <button type="submit">
-           Crear mi cuenta
-        </button>
-
+        <h2 class="titre_connexion"> Crea una cuenta</h2>
+        <label for="pseudo"> Pseudo </label>
+        <input type="text" id="pseudo" name="pseudo" placeholder="ex : Romain" required>
+        <label for="email">Correo electrónico </label>
+        <input type="email" id="email" name="email" placeholder="ex : romain@example.com" required>
+        <label for="mdp"> Contraseña </label>
+        <input type="password" id="mdp" name="mdp" placeholder="8 caracteres mínimo" required>
+        <label for="mdp2"> Confirmar Contraseña </label>
+        <input type="password" id="mdp2" name="mdp2" placeholder="Repetir la contraseña" required>
+        <button type="submit"> Crear mi cuenta </button>
     </form>
 
 </div>

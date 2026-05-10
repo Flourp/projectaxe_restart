@@ -11,11 +11,10 @@ try {
 
 } catch (PDOException $e) {
 
-    exit('Connection error: ' . $e->getMessage());
+    exit('Erreur de connexion : ' . $e->getMessage());
 }
 
 
-/* Quand le formulaire est envoyé */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     /* Récupération des données */
@@ -24,24 +23,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mdp = trim($_POST['mdp']);
     $mdp2 = trim($_POST['mdp2']);
 
-    /* Vérifie les champs */
     if (
         empty($pseudo) || empty($email) || empty($mdp) || empty($mdp2)
     ) {
 
-        echo "Please fill in all fields.";
+        echo "Veuillez remplir tous les champs.";
 
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
-        echo "Invalid email address.";
+        echo "Email invalide.";
 
     } elseif ($mdp !== $mdp2) {
 
-        echo "Passwords do not match.";
+        echo "Les mots de passe sont différents.";
 
     } else {
 
-        /* Vérifie si email déjà utilisé */
+        /* Vérifie si email est déjà utilisé */
         $check = $pdo->prepare(
             "SELECT * FROM utilisateurs WHERE email = :email"
         );
@@ -54,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($user) {
 
-            echo "This email already exists.";
+            echo "Cet email existe déjà.";
 
         } else {
 
@@ -79,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'password' => $passwordHash
             ]);
 
-            echo "Account created successfully!";
+            echo "Compte créé avec succès !";
 
             header("Location: login.php");
             exit;
@@ -165,71 +163,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </header>
 
 <div class="login_menu">
-
     <form method="POST">
-
-        <h2 class="titre_connexion">
-            Create an account
-        </h2>
-
-        <label for="pseudo">
-            Pseudo
-        </label>
-
-        <input
-            type="text"
-            id="pseudo"
-            name="pseudo"
-            placeholder="ex : Romain"
-            required
-            autocomplete="username"
-        >
-
-        <label for="email">
-            Email
-        </label>
-
-        <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="ex : romain@example.com"
-            required
-            autocomplete="email"
-        >
-
-        <label for="mdp">
-            Password
-        </label>
-
-        <input
-            type="password"
-            id="mdp"
-            name="mdp"
-            placeholder="8 characters minimum"
-            required
-            autocomplete="new-password"
-        >
-
-        <label for="mdp2">
-            Confirm password
-        </label>
-
-        <input
-            type="password"
-            id="mdp2"
-            name="mdp2"
-            placeholder="Repeat the password"
-            required
-            autocomplete="new-password"
-        >
-
-        <button type="submit">
-            Create my account
-        </button>
-
+        <h2 class="titre_connexion"> Create an account</h2>
+        <label for="pseudo"> Pseudo </label>
+        <input type="text" id="pseudo" name="pseudo" placeholder="ex : Romain" required>
+        <label for="email">Email </label>
+        <input type="email" id="email" name="email" placeholder="ex : romain@example.com" required>
+        <label for="mdp"> Password </label>
+        <input type="password" id="mdp" name="mdp" placeholder="8 characters minimum" required>
+        <label for="mdp2"> Confirm password </label>
+        <input type="password" id="mdp2" name="mdp2" placeholder="Repeat the password" required>
+        <button type="submit"> Create my account </button>
     </form>
-
 </div>
 
 </body>

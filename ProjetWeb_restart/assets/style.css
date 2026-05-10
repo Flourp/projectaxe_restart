@@ -150,8 +150,6 @@ a {
 
 /* REGLES */
 
-/* REGLES */
-
 .liste_règles {
     max-width: 750px;
     margin: 30px auto;
@@ -380,12 +378,6 @@ input.test {
 .image_cards {
     width: 240px;
     border-radius: 10px;
-}
-
-/* DARK MODE */
-
-.hidden {
-    display: none;
 }
 
 /* LANGUES */

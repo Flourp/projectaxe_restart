@@ -15,7 +15,6 @@ try {
 }
 
 
-/* Quand le formulaire est envoyé */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     /* Récupération des données */
@@ -24,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mdp = trim($_POST['mdp']);
     $mdp2 = trim($_POST['mdp2']);
 
-    /* Vérifie les champs */
     if (
         empty($pseudo) || empty($email) || empty($mdp) || empty($mdp2)
     ) {
@@ -41,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     } else {
 
-        /* Vérifie si email déjà utilisé */
+        /* Vérifie si email est déjà utilisé */
         $check = $pdo->prepare(
             "SELECT * FROM utilisateurs WHERE email = :email"
         );
@@ -164,69 +162,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </Section>
     </header>
 <div class="login_menu">
-
     <form method="POST">
-
-        <h2 class="titre_connexion">
-            Créer un compte
-        </h2>
-
-        <label for="pseudo">
-            Pseudo
-        </label>
-
-        <input
-            type="text"
-            id="pseudo"
-            name="pseudo"
-            placeholder="ex : Romain"
-            required
-            autocomplete="username"
-        >
-
-        <label for="email">
-            Email
-        </label>
-
-        <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="ex : romain@example.com"
-            required
-            autocomplete="email"
-        >
-
-        <label for="mdp">
-            Mot de passe
-        </label>
-
-        <input
-            type="password"
-            id="mdp"
-            name="mdp"
-            placeholder="8 caractères minimum"
-            required
-            autocomplete="new-password"
-        >
-
-        <label for="mdp2">
-            Confirmer le mot de passe
-        </label>
-
-        <input
-            type="password"
-            id="mdp2"
-            name="mdp2"
-            placeholder="Répétez le mot de passe"
-            required
-            autocomplete="new-password"
-        >
-
-        <button type="submit">
-            Créer mon compte
-        </button>
-
+        <h2 class="titre_connexion"> Créer un compte</h2>
+        <label for="pseudo"> Pseudo </label>
+        <input type="text" id="pseudo" name="pseudo" placeholder="ex : Romain" required>
+        <label for="email">Email </label>
+        <input type="email" id="email" name="email" placeholder="ex : romain@example.com" required>
+        <label for="mdp"> Mot de passe </label>
+        <input type="password" id="mdp" name="mdp" placeholder="8 caractères minimum" required>
+        <label for="mdp2"> Confirmer le mot de passe </label>
+        <input type="password" id="mdp2" name="mdp2" placeholder="Répétez le mot de passe" required>
+        <button type="submit"> Créer mon compte </button>
     </form>
 
 </div>

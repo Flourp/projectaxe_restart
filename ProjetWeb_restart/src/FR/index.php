@@ -76,8 +76,8 @@ header("Content-Security-Policy: script-src 'self' 'unsafe-eval'");
                     </ul>
                 </div>
                 <div class="lightdark">
-                    <img src="../../image/lightmode.png" alt="" style="width: 100px; height: 50px;">
-                    <img class="hidden" src="../../image/darkmode.png" alt="" style="width: 100px; height: 50px;">
+                    <img class="hidden" src="../../image/lightmode.png" alt="" style="width: 100px; height: 50px;">
+                    <img  src="../../image/darkmode.png" alt="" style="width: 100px; height: 50px;">
                 </div>
             </section>
         </Section>

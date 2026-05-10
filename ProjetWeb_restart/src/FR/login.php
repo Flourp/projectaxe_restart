@@ -121,38 +121,18 @@ header("Content-Security-Policy: script-src 'self' 'unsafe-eval'");
                 <p> Connexion </p>
             </div>
             <div class="login_menu">
-<form action="login.php" method="POST">
-
-    <label for="email" class="email_input">Email :</label>
-    <input
-        type="email"
-        id="email"
-        name="email"
-        class="email_test"
-        autocomplete="email"
-        required
-    >
-
-    <br>
-
-    <label for="password" class="password_input">Mot de passe :</label>
-    <input
-        type="password"
-        id="password"
-        name="password"
-        class="password_test"
-        autocomplete="current-password"
-        required
-    >
-
-    <br>
-
-<div class="boutton_coller">
-    <button type="submit">Se connecter</button>
-    <a href="../../src/fr/account_creating.php">Nouveau compte</a>
-</div>
-
-</form>
+                <form action="login.php" method="POST">
+                    <label for="email" class="email_input">Email :</label>
+                    <input type="email" id="email" name="email" class="email_test" required>
+                    <br>
+                    <label for="password" class="password_input">Mot de passe :</label>
+                    <input type="password" id="password" name="password" class="password_test" required>
+                    <br>
+                    <div class="boutton_coller">
+                    <button type="submit">Se connecter</button>
+                    <a href="../../src/fr/account_creating.php">Nouveau compte</a>
+                    </div>
+                </form>
         </section>
     </main>
     <script src="../../scripts/main.js"></script>

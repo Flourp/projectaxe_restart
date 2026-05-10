@@ -16,31 +16,16 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function showChamp() {
     let name = document.getElementById("input").value;
-
-    let url =
-        "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/" +
-        name +
-        "_0.jpg";
-
+    let url = "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/" + name + "_0.jpg";
     document.getElementById("image").src = url;
-
     stat_champion();
 }
 
 function stat_champion() {
     let name = document.getElementById("input").value;
-
     const champ = json.data[name];
-
-    document.getElementById("name").textContent =
-        champ.name;
-
-    document.getElementById("health").textContent =
-        champ.stats.hp + " HP";
-
-    document.getElementById("armor").textContent =
-        champ.stats.armor + " Armor";
-
-    document.getElementById("damage").textContent =
-        champ.stats.attackdamage + " Damage";
+    document.getElementById("name").textContent = champ.name;
+    document.getElementById("health").textContent = champ.stats.hp + " HP";
+    document.getElementById("armor").textContent = champ.stats.armor + " Armor";
+    document.getElementById("damage").textContent = champ.stats.attackdamage + " Damage";
 }

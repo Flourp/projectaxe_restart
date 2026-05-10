@@ -123,38 +123,18 @@ if ($user && password_verify($password, $user['password'])) {
                 <p> Iniciar sesión</p>
             </div>
             <div class="login_menu">
-<form action="login.php" method="POST">
-
-    <label for="email" class="email_input">Email :</label>
-    <input
-        type="email"
-        id="email"
-        name="email"
-        class="email_test"
-        autocomplete="email"
-        required
-    >
-
-    <br>
-
-    <label for="password" class="password_input">Contraseña :</label>
-    <input
-        type="password"
-        id="password"
-        name="password"
-        class="password_test"
-        autocomplete="current-password"
-        required
-    >
-
-    <br>
-
-    <div class="boutton_coller">
-    <button type="submit">Acceso</button>
-    <a href="../../src/es/account_creating.php">Nueva cuenta</a>
-</div>
-
-</form>
+                <form action="login.php" method="POST">
+                    <label for="email" class="email_input">Correo electrónico</label>
+                    <input type="email" id="email" name="email" class="email_test" required>
+                    <br>
+                    <label for="password" class="password_input">Contraseña :</label>
+                    <input type="password" id="password" name="password" class="password_test" required>
+                    <br>
+                    <div class="boutton_coller">
+                    <button type="submit">Acceso</button>
+                    <a href="../../src/fr/account_creating.php">Nueva cuenta</a>
+                    </div>
+                </form>
         </section>
     </main>
     <script src="../../scripts/main.js"></script>
